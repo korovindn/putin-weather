@@ -30,6 +30,7 @@ body {
 }
 
 .main__form__input{
+  font-family: Ubuntu;
   color: #333;
   width: 17em;
   height: 3em;
@@ -47,6 +48,7 @@ body {
 }
 
 .main__form__input-button{
+  font-family: Ubuntu;
   color: #333;
   height: 3em;
   width: 3em;

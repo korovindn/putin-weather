@@ -28,6 +28,7 @@ body {
 }
 
 .main__form__input{
+  color: #333;
   width: 17em;
   height: 3em;
   margin-left: 1.5em;
@@ -44,6 +45,7 @@ body {
 }
 
 .main__form__input-button{
+  color: #333;
   height: 3em;
   width: 3em;
   margin: 0;
@@ -64,6 +66,13 @@ body {
 .main__weather-temp{
   font-size: 5em;
   margin: 0.2em 0;
+}
+
+.err{
+  margin: 3em;
+  padding: 1em;
+  background-color: rgba(256,256,256,0.5);
+  color: #333;
 }
 
 @media (max-width: 768px){

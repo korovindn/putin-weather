@@ -12,40 +12,40 @@ function App() {
   const [weather, setWeather] = useState()
   
   const getWeather = () => {
-      fetch(`${config.baseUrl}weather?q=${query}&units=metric&APPID=${config.apiKey}`)
-      .then(
-        (res) => res.json(),
-        (e) => {
-          console.log(e)
-      })
-      .then(
-        (res) => {
-          setWeather(res)
-          setQuery('')
-          let type = ''
-          if(res.main.temp < -10){
-            type = type + 'extracold'
-          } else if(res.main.temp < 10){
-            type = type + 'cold'
-          } else if(res.main.temp < 20){
-            type = type + 'cool'
-          } else if(res.main.temp < 30){
-            type = type + 'hot'
-          } else {
-            type = type + 'extrahot'
-          }
-          if(res.weather[0].main === 'Thunderstorm'){
-            type = 'coldRain'
-          } else if(res.weather[0].main === 'Mist'){
-            type = type + 'Clouds'
-          } else {
-            type = type + res.weather[0].main
-          }
-          setWeatherType(type)
-        },
-        (e) => {
-          console.log(e)
-        })
+    fetch(`${config.baseUrl}weather?q=${query}&units=metric&APPID=${config.apiKey}`)
+    .then(
+      (res) => res.json(),
+      (e) => {
+        console.log(e)
+    })
+    .then(
+      (res) => {
+        setWeather(res)
+        setQuery('')
+        let type = ''
+        if(res.main.temp < -10){
+          type = type + 'extracold'
+        } else if(res.main.temp < 10){
+          type = type + 'cold'
+        } else if(res.main.temp < 20){
+          type = type + 'cool'
+        } else if(res.main.temp < 30){
+          type = type + 'hot'
+        } else {
+          type = type + 'extrahot'
+        }
+        if(res.weather[0].main === 'Thunderstorm'){
+          type = 'coldRain'
+        } else if(res.weather[0].main === 'Mist' || res.weather[0].main === 'Fog'){
+          type = type + 'Clouds'
+        } else {
+          type = type + res.weather[0].main
+        }
+        setWeatherType(type)
+      },
+      (e) => {
+        console.log(e)
+    })
   }
 
   const keyHandler = (evt) => {
@@ -74,7 +74,7 @@ function App() {
             {weather.weather[0].main}
           </div>
         </div>
-        : weather ? 'Putin was not here yet!' : '' }
+        : weather ? <div className='err'>Putin was not here yet!</div> : '' }
       </div>
     </div>
   );

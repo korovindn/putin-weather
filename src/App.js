@@ -11,8 +11,7 @@ function App() {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState()
   
-  const getWeather = (evt) => {
-    if(evt.key === 'Enter'){
+  const getWeather = () => {
       fetch(`${config.baseUrl}weather?q=${query}&units=metric&APPID=${config.apiKey}`)
       .then(
         (res) => res.json(),
@@ -47,14 +46,20 @@ function App() {
         (e) => {
           console.log(e)
         })
+  }
+
+  const keyHandler = (evt) => {
+    if(evt.key === 'Enter'){
+      getWeather()
     }
   }
+
   return (
     <div className='App' style = {{backgroundImage: 'url('+ (require(`./assets/${weatherType}.jpg`) ? require(`./assets/${weatherType}.jpg`) : require('./assets/default.jpg'))+')'}}>
       <div className = 'main'>
         <label className='main__label'>
           Your City: 
-          <input className='main__input' type='text' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} onKeyPress={getWeather}>
+          <input className='main__input' type='text' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} onKeyPress={keyHandler}>
           </input>
         </label>
        { weather && weather.main && weather.name && weather.sys ?

@@ -36,7 +36,7 @@ function App() {
         }
         if(res.weather[0].main === 'Thunderstorm'){
           type = 'coldRain'
-        } else if(res.weather[0].main === 'Mist' || res.weather[0].main === 'Fog'){
+        } else if(res.weather[0].main === 'Mist' || res.weather[0].main === 'Fog' || res.weather[0].main === 'Drizzle'){
           type = type + 'Clouds'
         } else {
           type = type + res.weather[0].main

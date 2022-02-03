@@ -57,11 +57,11 @@ function App() {
   return (
     <div className='App' style = {{backgroundImage: 'url('+ (require(`./assets/${weatherType}.jpg`) ? require(`./assets/${weatherType}.jpg`) : require('./assets/default.jpg'))+')'}}>
       <div className = 'main'>
-        <label className='main__label'>
-          Your City: 
-          <input className='main__input' type='text' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} onKeyPress={keyHandler}>
-          </input>
-        </label>
+        <div className='main__form'>
+          <label className='main__form__label'>Your City:</label> 
+          <input className='main__form__input' type='text' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} onKeyPress={keyHandler}>
+          </input><button className='main__form__input-button' onClick={getWeather}>Go!</button>
+        </div>
        { weather && weather.main && weather.name && weather.sys ?
          <div className='main__weather'>
           <div className='main__weather-loc'>

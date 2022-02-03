@@ -1,0 +1,58 @@
+body {
+  font-family: Ubuntu;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+.App{
+  transition: 1s ease;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.25));
+}
+
+
+.main__input{
+  margin: 1.5em;
+  outline: 0;
+  border: 0;
+  padding: 1em;
+  background-color: rgba(256,256,256,0.5);
+  transition: 0.5s;
+}
+
+.main__input:focus{
+  background-color: rgba(256,256,256,0.75);
+}
+
+
+.main__weather{
+  margin: 3em;
+}
+
+.main__weather-temp{
+  font-size: 5em;
+  margin: 0.2em 0;
+}
+
+@media (max-width: 768px){
+  .main__input{
+    display: block;
+    margin: 1.5em 0;
+  }
+
+  body{
+    font-size: 14px;
+  }
+}

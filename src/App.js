@@ -59,7 +59,7 @@ function App() {
       <div className = 'main'>
         <div className='main__form'>
           <label className='main__form__label'>Your City:</label> 
-          <input className='main__form__input' type='text' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} onKeyPress={keyHandler}>
+          <input className='main__form__input' type='search' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} onKeyPress={keyHandler}>
           </input><button className='main__form__input-button' onClick={getWeather}>Go!</button>
         </div>
        { weather && weather.main && weather.name && weather.sys ?

@@ -50,7 +50,7 @@ function App() {
     }
   }
   return (
-    <div className='App' style = {{backgroundImage: 'url('+ (require(`./assets/${weatherType}.jpg`) ? require(`./assets/${weatherType}.jpg`) : require('./img/default.jpg'))+')'}}>
+    <div className='App' style = {{backgroundImage: 'url('+ (require(`./assets/${weatherType}.jpg`) ? require(`./assets/${weatherType}.jpg`) : require('./assets/default.jpg'))+')'}}>
       <div className = 'main'>
         <label className='main__label'>
           Your City: 

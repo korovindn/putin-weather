@@ -1,6 +1,7 @@
-import './App.css';
 import {useState} from 'react';
 import Weather from './components/Weather';
+import SearchButton from './components/UI/SearchButton/SearchButton';
+import SearchInput from './components/UI/SearchInput/SearchInput';
 
 const config = {
   apiKey: "bac3d81f894d260e1b3ce2ddfab67d33",
@@ -49,12 +50,6 @@ function App() {
     })
   }
 
-  const keyHandler = (e) => {
-    if(e.key === 'Enter'){
-      getWeather()
-    }
-  }
-
   const submitHandler = (e) => {
     e.preventDefault()
     getWeather()
@@ -65,12 +60,10 @@ function App() {
       <div className = 'main'>
         <form className='main__form' >
           <label className='main__form__label'>Your City:</label> 
-          <input className='main__form__input' type='search' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} onKeyPress={keyHandler}>
-          </input><button className='main__form__input-button' onClick={submitHandler}>Go!</button>
+          <SearchInput type='search' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} />
+          <SearchButton onClick={submitHandler}>Go!</SearchButton>
         </form>
-       { weather && weather.main && weather.name && weather.sys ?
-          <Weather weather = {weather}/>
-        : weather ? <div className='err'>Putin was not here yet!</div> : '' }
+        <Weather weather = {weather}/>
       </div>
     </div>
   );

@@ -1,0 +1,23 @@
+.SearchInput{
+    font-family: Ubuntu;
+    color: #333;
+    width: 17em;
+    height: 3em;
+    margin-left: 1.5em;
+    padding: 1em;
+    box-sizing: border-box;
+    outline: 0;
+    border: 0;
+    background-color: rgba(256,256,256,0.5);
+    transition: 0.5s;
+}
+    
+.SearchInput:focus{
+    background-color: rgba(256,256,256,0.75);
+}
+
+@media (max-width: 768px){
+    .SearchInput{
+        margin: 0;
+    }
+}

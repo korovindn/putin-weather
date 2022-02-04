@@ -29,40 +29,6 @@ body {
   align-items: center;
 }
 
-.main__form__input{
-  font-family: Ubuntu;
-  color: #333;
-  width: 17em;
-  height: 3em;
-  margin-left: 1.5em;
-  padding: 1em;
-  box-sizing: border-box;
-  outline: 0;
-  border: 0;
-  background-color: rgba(256,256,256,0.5);
-  transition: 0.5s;
-}
-
-.main__form__input:focus{
-  background-color: rgba(256,256,256,0.75);
-}
-
-.main__form__input-button{
-  font-family: Ubuntu;
-  color: #333;
-  height: 3em;
-  width: 3em;
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  border: 0;
-  background-color: rgba(256,256,256,0.5);
-}
-
-.main__form__input-button:hover{
-  background-color: rgba(256,256,256,0.75);
-}
-
 .main__weather{
   margin: 3em;
 }
@@ -82,10 +48,6 @@ body {
 @media (max-width: 768px){
   .main__form__label{
     display: none;
-  }
-
-  .main__form__input{
-    margin: 0;
   }
 
   body{

@@ -1,0 +1,15 @@
+.SearchButton{
+    font-family: Ubuntu;
+    color: #333;
+    height: 3em;
+    width: 3em;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    background-color: rgba(256,256,256,0.5);
+}
+  
+.SearchButton:hover {
+    background-color: rgba(256,256,256,0.75);
+}

@@ -37,7 +37,7 @@ function App() {
         }
         if(res.weather[0].main === 'Thunderstorm'){
           type = 'coldRain'
-        } else if(res.weather[0].main === 'Mist' || res.weather[0].main === 'Fog' || res.weather[0].main === 'Drizzle'){
+        } else if(['Mist', 'Smoke', 'Haze', 'Dust', 'Fog', 'Sand', 'Dust', 'Ash', 'Squall', 'Tornado', 'Drizzle'].includes(res.weather[0].main)){
           type = type + 'Clouds'
         } else {
           type = type + res.weather[0].main
@@ -49,20 +49,25 @@ function App() {
     })
   }
 
-  const keyHandler = (evt) => {
-    if(evt.key === 'Enter'){
+  const keyHandler = (e) => {
+    if(e.key === 'Enter'){
       getWeather()
     }
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    getWeather()
   }
 
   return (
     <div className='App' style = {{backgroundImage: 'url('+ (require(`./assets/${weatherType}.jpg`) ? require(`./assets/${weatherType}.jpg`) : require('./assets/default.jpg'))+')'}}>
       <div className = 'main'>
-        <div className='main__form' >
+        <form className='main__form' >
           <label className='main__form__label'>Your City:</label> 
           <input className='main__form__input' type='search' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} onKeyPress={keyHandler}>
-          </input><button className='main__form__input-button' onClick={getWeather}>Go!</button>
-        </div>
+          </input><button className='main__form__input-button' onClick={submitHandler}>Go!</button>
+        </form>
        { weather && weather.main && weather.name && weather.sys ?
           <Weather weather = {weather}/>
         : weather ? <div className='err'>Putin was not here yet!</div> : '' }

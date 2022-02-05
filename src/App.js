@@ -1,58 +1,37 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Weather from './components/Weather';
 import SearchButton from './components/UI/SearchButton/SearchButton';
 import SearchInput from './components/UI/SearchInput/SearchInput';
-
-const config = {
-  apiKey: "bac3d81f894d260e1b3ce2ddfab67d33",
-  baseUrl: "https://api.openweathermap.org/data/2.5/"
-}
+import getWeather from './API/weatherService';
 
 function App() {
   const [weatherType, setWeatherType] = useState('default')
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState()
-  
-  const getWeather = () => {
-    fetch(`${config.baseUrl}weather?q=${query}&units=metric&APPID=${config.apiKey}`)
-    .then(
-      (res) => res.json(),
-      (e) => {
-        console.log(e)
-    })
-    .then(
-      (res) => {
-        setWeather(res)
-        setQuery('')
-        let type = ''
-        if(res.main.temp < -10){
-          type = type + 'extracold'
-        } else if(res.main.temp < 10){
-          type = type + 'cold'
-        } else if(res.main.temp < 20){
-          type = type + 'cool'
-        } else if(res.main.temp < 30){
-          type = type + 'hot'
-        } else {
-          type = type + 'extrahot'
-        }
-        if(res.weather[0].main === 'Thunderstorm'){
-          type = 'coldRain'
-        } else if(['Mist', 'Smoke', 'Haze', 'Dust', 'Fog', 'Sand', 'Dust', 'Ash', 'Squall', 'Tornado', 'Drizzle'].includes(res.weather[0].main)){
-          type = type + 'Clouds'
-        } else {
-          type = type + res.weather[0].main
-        }
-        setWeatherType(type)
-      },
-      (e) => {
-        console.log(e)
-    })
+
+  const getCoords = () => {
+    return new Promise((res, rej) =>
+      navigator.permissions ?
+        navigator.permissions.query({
+          name: 'geolocation'
+        }).then(permission =>
+          permission.state === "granted"
+            ? navigator.geolocation.getCurrentPosition(pos => res(pos.coords)) 
+            : res(null)
+        ) :
+      rej(new Error("Permission API is not supported"))
+    )
   }
 
+  useEffect(() => {
+    getCoords().then((coords) => {
+      getWeather(`lat=${coords.latitude}&lon=${coords.longitude}`, setQuery, setWeather, setWeatherType)
+    })
+  },[])
+  
   const submitHandler = (e) => {
     e.preventDefault()
-    getWeather()
+    getWeather(('q='+query), setQuery, setWeather, setWeatherType)
   }
 
   return (

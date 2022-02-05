@@ -1,8 +1,10 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Weather from './components/Weather';
 import SearchButton from './components/UI/SearchButton/SearchButton';
 import SearchInput from './components/UI/SearchInput/SearchInput';
 import getWeather from './API/weatherService';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [weatherType, setWeatherType] = useState('default')
@@ -32,7 +34,7 @@ function App() {
         <form className='main__form' >
           <label className='main__form__label'>Your City:</label> 
           <SearchInput type='search' placeholder='Moscow' onChange={(e)=>{setQuery(e.target.value)}} value={query} />
-          <SearchButton onClick={submitHandler}>Go!</SearchButton>
+          <SearchButton onClick={submitHandler}><FontAwesomeIcon icon={faSearch} /></SearchButton>
         </form>
         <Weather weather = {weather}/>
       </div>

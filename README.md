@@ -1,1 +1,1 @@
-A simple weather app with PUTIN
+A simple weather app, but with PUTIN.

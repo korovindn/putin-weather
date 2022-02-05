@@ -10,22 +10,14 @@ function App() {
   const [weather, setWeather] = useState()
 
   const getCoords = () => {
-    return new Promise((res, rej) =>
-      navigator.permissions ?
-        navigator.permissions.query({
-          name: 'geolocation'
-        }).then(permission =>
-          permission.state === "granted"
-            ? navigator.geolocation.getCurrentPosition(pos => res(pos.coords)) 
-            : res(null)
-        ) :
-      rej(new Error("Permission API is not supported"))
+    return new Promise((res) =>
+      navigator.geolocation.getCurrentPosition(pos => res(pos.coords))
     )
   }
 
   useEffect(() => {
     getCoords().then((coords) => {
-      getWeather(`lat=${coords.latitude}&lon=${coords.longitude}`, setQuery, setWeather, setWeatherType)
+        getWeather(`lat=${coords.latitude}&lon=${coords.longitude}`, setQuery, setWeather, setWeatherType)
     })
   },[])
   

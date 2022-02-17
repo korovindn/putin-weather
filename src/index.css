@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+body {
+  font-family: Ubuntu;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+.App{
+  transition: 1s ease;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.25));
+}
+
+.main__form{
+  display: flex;
+  align-items: center;
+}
+
+.main__weather{
+  margin: 3em;
+}
+
+.main__weather-temp{
+  font-size: 5em;
+  margin: 0.2em 0;
+}
+
+.err{
+  margin: 3em;
+  padding: 1em;
+  background-color: rgba(256,256,256,0.5);
+  color: #333;
+}
+
+@media (max-width: 768px){
+  .main__form__label{
+    display: none;
+  }
+
+  body{
+    font-size: 14px;
+  }
+}

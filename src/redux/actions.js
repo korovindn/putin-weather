@@ -5,10 +5,10 @@ const config = {
     baseUrl: "https://api.openweathermap.org/data/2.5/"
 }
 
-export function fetchWeather (query) {
+export function fetchWeather (searchQuery) {
     return async dispatch => {
         dispatch(showLoader())
-        const response = await fetch (`${config.baseUrl}weather?${query}&units=metric&APPID=${config.apiKey}`)
+        const response = await fetch (`${config.baseUrl}weather?${searchQuery}&units=metric&APPID=${config.apiKey}`)
         const json = await response.json()
         dispatch({ type: FETCH_WEATHER, payload: json })
         dispatch(hideLoader())

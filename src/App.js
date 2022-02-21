@@ -27,7 +27,7 @@ function App() {
   }
 
   const getImage = () => {
-    //console.log('called') // fix each render call
+    //console.log('getImage') // fix each render call
     let type = ''
     if(weather.main){
       if(weather.main.temp < -10){
@@ -54,18 +54,21 @@ function App() {
   }
 
   useEffect(() => {
+    console.log('useEffect')
     getCoords().then((coords) => {
         //getWeather(`lat=${coords.latitude}&lon=${coords.longitude}`, setQuery, setLoader, setWeather, setWeatherType)
         dispatch(fetchWeather(`lat=${coords.latitude}&lon=${coords.longitude}`))
     })
     //setTimeout(() => {setLoader(false)}, 10000)
-  },[])
+  },[dispatch])
   
   const submitHandler = (e) => {
     e.preventDefault()
     //getWeather(('q='+query), setQuery, setLoader, setWeather, setWeatherType)
-    dispatch(fetchWeather('q='+query))
-    setQuery('')
+    if(query){
+      dispatch(fetchWeather('q='+query))
+      setQuery('')
+    }
   }
 
   return (

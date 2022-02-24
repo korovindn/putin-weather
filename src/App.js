@@ -14,11 +14,14 @@ function App() {
   const [query, setQuery] = useState('')
   //const [weather, setWeather] = useState()
   //const [loader, setLoader] = useState(true)
+  const image = useSelector((state) => {
+    return state.weather.image
+  })
 
   const dispatch = useDispatch()
-  const weather = useSelector((state) => {
-    return state.weather.weather
-  })
+  // const weather = useSelector((state) => {
+  //   return state.weather.weather
+  // })
 
   const getCoords = () => {
     return new Promise((res) =>
@@ -26,32 +29,32 @@ function App() {
     )
   }
 
-  const getImage = () => {
-    //console.log('getImage') // fix each render call
-    let type = ''
-    if(weather.main){
-      if(weather.main.temp < -10){
-          type = type + 'extracold'
-      } else if(weather.main.temp < 10){
-          type = type + 'cold'
-      } else if(weather.main.temp < 20){
-          type = type + 'cool'
-      } else if(weather.main.temp < 30){
-          type = type + 'hot'
-      } else {
-          type = type + 'extrahot'
-      }
-      if(weather.weather[0].main === 'Thunderstorm'){
-          type = 'coldRain'
-      } else if(['Mist', 'Smoke', 'Haze', 'Dust', 'Fog', 'Sand', 'Dust', 'Ash', 'Squall', 'Tornado', 'Drizzle'].includes(weather.weather[0].main)){
-          type = type + 'Clouds'
-      } else {
-          type = type + weather.weather[0].main
-      }
-      return type
-    }
-    return 'default'
-  }
+  // const getImage = () => {
+  //   //console.log('getImage') // fix each render call
+  //   let type = 'default'
+  //   if(weather.main){
+  //     type = ''
+  //     if(weather.main.temp < -10){
+  //         type = type + 'extracold'
+  //     } else if(weather.main.temp < 10){
+  //         type = type + 'cold'
+  //     } else if(weather.main.temp < 20){
+  //         type = type + 'cool'
+  //     } else if(weather.main.temp < 30){
+  //         type = type + 'hot'
+  //     } else {
+  //         type = type + 'extrahot'
+  //     }
+  //     if(weather.weather[0].main === 'Thunderstorm'){
+  //         type = 'coldRain'
+  //     } else if(['Mist', 'Smoke', 'Haze', 'Dust', 'Fog', 'Sand', 'Dust', 'Ash', 'Squall', 'Tornado', 'Drizzle'].includes(weather.weather[0].main)){
+  //         type = type + 'Clouds'
+  //     } else {
+  //         type = type + weather.weather[0].main
+  //     }
+  //   }
+  //   return type
+  // }
 
   useEffect(() => {
     console.log('useEffect')
@@ -72,7 +75,7 @@ function App() {
   }
 
   return (
-    <div className='App' style = {{backgroundImage: 'url('+ require(`./assets/${getImage()}.jpg`) +')' /* should not call it here */}}>
+    <div className='App' style = {{backgroundImage: 'url('+ /*require(`./assets/${getImage()}.jpg`)*/ image +')' /* should not call it here */}}>
       <Loader /*loader = {loader}*//>
       <div className = 'main'>
         <form className='main__form' >

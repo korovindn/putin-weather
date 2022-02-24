@@ -10,17 +10,16 @@ export function fetchWeather (searchQuery) {
         dispatch(showLoader())
         const response = await fetch (`${config.baseUrl}weather?${searchQuery}&units=metric&APPID=${config.apiKey}`)
         const json = await response.json()
-        if(json.sys.country === 'UA'){
-            json.sys.country = 'RU'
-        }
-        dispatch({ type: FETCH_WEATHER, payload: json })
-        if(!json.cod){
+        if(json.cod === 200){
+            if(json.sys.country === 'UA'){
+                json.sys.country = 'RU'
+            }
             const image = getImage(json)
-            //image.onload = function () {
+            console.log(image)
             dispatch({type: SET_IMAGE, payload: image })
         }
         dispatch(hideLoader())
-        //}
+        dispatch({ type: FETCH_WEATHER, payload: json })
     }
 }
 
@@ -57,6 +56,5 @@ export function getImage (weather) {
         type = type + weather.weather[0].main
     }
     //const image = new Image()
-    let image/*.src*/ = require(`../assets/${type}.jpg`)
-    return image
+    return require(`../assets/${type}.jpg`)
 }

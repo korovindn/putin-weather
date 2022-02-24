@@ -10,7 +10,7 @@ export function fetchWeather (searchQuery) {
         dispatch(showLoader())
         const response = await fetch (`${config.baseUrl}weather?${searchQuery}&units=metric&APPID=${config.apiKey}`)
         const json = await response.json()
-        if(json.sys.country == 'UA'){
+        if(json.sys.country === 'UA'){
             json.sys.country = 'RU'
         }
         dispatch({ type: FETCH_WEATHER, payload: json })

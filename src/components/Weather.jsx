@@ -19,7 +19,7 @@ const Weather = () => {
       </div>
     </div>
   )
-  } else if (!(weather.cod === 200)) {
+  } else if (weather.cod) {
     return(
       <div className='err'>Putin was not here yet!</div>
     )
